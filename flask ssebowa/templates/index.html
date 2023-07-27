@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Autocomplete Search Box | CodingNepal</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+<style>
+input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  top: 200px;
+  left: 80px;
+  font-size: 0px;
+  visibility: hidden;
+  color: #b8b8b8;
+}
+
+
+</style>
+
+
+  </head>
+  <body bgcolor="white">
+   <div class="glass-panelj">
+    <div class="wrapper">
+
+
+
+<form method="post" enctype="multipart/form-data" action="/visual" id="visual">
+
+      <center>
+        
+        <input type="file" id="upload" name="f" onchange="visual();">
+        
+
+      </center>
+</form>
+
+
+
+
+
+    
+     <form method="post" enctype="multipart/form-data" action="/get_text" id="form1">
+
+        <img src="{{url_for('static', filename='logo.png' )}}" width="100%" height="70%">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL1WUz-J_KcOnPq74BfsnFMub6o14h0BkQ91c10i88cocQ6-ZnITz86UXwj74&amp"/>
+        <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search.." name="t">
+        <div class="autocom-box">
+          <!-- here list are inserted from javascript -->
+        </div>
+          
+         <div class="icon">  <i class="fas fa-search" onclick="eatFood();"></i>
+          
+        </div> 
+
+            <center>
+         <label class="button" for="upload"><img src="{{url_for('static', filename='lence.jpg' )}}" width="30px"></label> </center>
+   
+         
+      </div>
+
+     </form>  
+    </div>
+    <center>
+   <h3 color="black">the ssebowa search engine </h3>
+     </center>
+   </div>
+          
+    <script>
+                 function eatFood() {
+                           document.getElementById('form1').submit();
+                  }
+                 function visual() {
+                           document.getElementById('visual').submit();
+                  }
+    </script>
+    <script src="{{url_for('static', filename='script1.js' )}}"></script>
+    <script src="{{url_for('static', filename='suggestions1.js')}}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <title>1 Autocomplete Search Box  | CodingNepal</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style1.css' )}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  </head>
+  <body>
+    <div class="wrapper">
+     <form method="post" enctype="multipart/form-data" action="/get_text" id="form1">
+     
+        <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search.." name="t" value="{{keyword}}">
+        <div class="autocom-box">
+          <!-- here list are inserted from javascript -->
+        </div>
+          
+         <div class="icon"><i class="fas fa-search" onclick="eatFood();"></i>
+        </div>
+
+      </div>
+     </form>
+
+              <form method="post" enctype="multipart/form-data" action="/get_img" id="img">
+            
+              </form>
+              <form method="post" enctype="multipart/form-data" action="/get_video" id="vid">
+           
+              </form>
+              <form method="post" enctype="multipart/form-data" action="/get_news" id="news">
+         
+              </form>
+               <center>
+               <input type="submit" value="all" class="button" onclick="eatFood();"/>
+               <input type="submit" value="image" class="button" onclick="img();"/>
+               <input type="submit" value="videos" class="button" onclick="vid();"/>
+               <input type="submit" value="news" class="button" onclick="news();"/>
+                </center> 
+    
+  
+    </div>
+
+        {% if results%}
+          
+          
+            {% for result in results%}
+
+                            <div class="glass-panel">
+                             <a href="{{ result.1}}" target="_blank"> <p style="font-size:15px">{{ result.0}}</p> </a>
+                 
+                              <p style="font-size:8px;color:black;"> {{ result.2}} </p></a>
+                             </div>
+
+            {% endfor%}
+         
+        {% endif%}
+
+
+
+   
+
+ 
+    <script>
+                 function eatFood() {
+                      document.getElementById('form1').submit();
+                  }
+                 function img() {
+                      document.getElementById('img').submit();
+                  }
+                 function news() {
+                      document.getElementById('news').submit();
+                  }
+                 function vid() {
+                      document.getElementById('vid').submit();
+                  }
+    </script>
+
+
+  </body>
+</html>

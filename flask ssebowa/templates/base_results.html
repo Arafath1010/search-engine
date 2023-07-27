@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<style>
+.pagination a {
+  color: black;
+  float: center;
+  padding: 2px 10px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: green;
+  color: white;
+   border-radius: 30px;
+}
+
+.pagination a.inactive {
+  background-color: green;
+  color: white;
+}
+.pagination a:focus { background-color:green; border-radius: 5px;color: white;}
+
+.pagination a:hover:not(.active) {background-color: #ddd; border-radius: 5px;}
+</style>
+
+
+
+  <head>
+ 
+    <meta charset="utf-8">
+    <title>1 Autocomplete Search Box  | CodingNepal</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style1.css' )}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  </head>
+  <body>
+    <div class="wrapper">
+     <form method="post" enctype="multipart/form-data" action="/get_text" id="form1">
+        <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search.." name="t" value="{{keyword}}">
+        <div class="autocom-box">
+          <!-- here list are inserted from javascript -->
+        </div>
+          
+         <div class="icon"><i class="fas fa-search" onclick="eatFood();"></i>
+        </div>
+
+      </div>
+     </form>
+
+              <form method="post" enctype="multipart/form-data" action="/get_img" id="img">
+   
+              </form>
+              <form method="post" enctype="multipart/form-data" action="/get_video" id="vid">
+
+              </form>
+              <form method="post" enctype="multipart/form-data" action="/get_news" id="news">
+
+              </form>
+               <center>
+               <input type="submit" value="all" class="button" onclick="eatFood();"/>
+               <input type="submit" value="image" class="button" onclick="img();"/>
+               <input type="submit" value="videos" class="button" onclick="vid();"/>
+               <input type="submit" value="news" class="button" onclick="news();"/>
+                </center>    
+  
+    </div>
+<center>
+        {% if resultsimg%}
+
+          <div class="glass-panel">
+            {% for result in resultsimg%}
+
+
+                 <a href="{{ result.1}}" target="_blank">
+                  <img src="{{ result.0 }}" class="zoom" style="border-radius:10px;min-width:130px;max-width:160px;padding: 1px;"/></a>
+                  <!--a href="https://{{ result.2}}">{{ result.2 }}</a--!>
+                
+
+            {% endfor%}
+          </div>
+        {% endif%}
+</center>
+
+
+    
+             {% if results%}
+          
+            {% for result in results%}
+
+                 <div class="glass-panel">
+                    <div class="container_for_img">
+                           <div>
+                             <a href="{{ result.1}}" target="_blank"> <p style="font-size:10px">{{ result.1}}</p> </a>
+                 
+                              <a href="{{ result.1}}" target="_blank">
+                              <p style="font-size:18px"> {{ result.0 }} </p></a>
+                           </div>
+                             
+                          
+                     </div>
+                     <p style="color:black;font-size:10px">{{ result.2}}</p>
+  
+                 </div>
+
+            {% endfor%}
+         
+        {% endif%}
+  
+<center>
+        {% if resultvideo%}
+
+          <div class="glass-panel">
+            {% for result in resultvideo%}
+
+
+                 <a href="{{ result.1}}" target="_blank">
+                  <img src="{{ result.0 }}" class="zoom" style="border-radius:10px;min-width:130px;max-width:160px;padding: 1px;"/></a>
+                
+
+            {% endfor%}
+          </div>
+        {% endif%}
+</center>
+
+   
+
+ 
+    <script>
+                 function eatFood() {
+                      document.getElementById('form1').submit();
+                  }
+                 function img() {
+                      document.getElementById('img').submit();
+                  }
+                 function news() {
+                      document.getElementById('news').submit();
+                  }
+                 function vid() {
+                      document.getElementById('vid').submit();
+                  }
+    </script>
+    <script src="{{url_for('static', filename='script1.js' )}}"></script>
+    <script src="{{url_for('static', filename='suggestions1.js')}}"></script>
+<div class="pagination">
+<center>
+  <a  href="#">&laquo;</a>
+  <a class="{{active1}}" href="#">1</a>
+  <a class="{{active2}}" href="/get_text_2">2</a>
+  <a class="{{active3}}" href="/get_text_3">3</a>
+  <a class="{{active4}}" href="/get_text_4">4</a>
+  <a class="{{active5}}" href="/get_text_5">5</a>
+  <a href="#">&raquo;</a>
+</center>
+</div>
+  </body>
+</html>
